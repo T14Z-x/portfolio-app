@@ -1,26 +1,172 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --surface-primary: #f5f7ff;
+  --surface-elevated: #ffffff;
+  --surface-muted: #e8ecff;
+  --text-primary: #0b1220;
+  --text-muted: #4a556b;
+  --accent: #6366f1;
+  --accent-soft: rgba(99, 102, 241, 0.12);
+  --border-soft: rgba(79, 70, 229, 0.12);
+  --shadow-soft: 0 24px 60px rgba(79, 70, 229, 0.12);
+}
+
+[data-theme="dark"] {
+  --surface-primary: #05060a;
+  --surface-elevated: #0b1020;
+  --surface-muted: #10172b;
+  --text-primary: #f8fafc;
+  --text-muted: #96a3c1;
+  --accent: #818cf8;
+  --accent-soft: rgba(129, 140, 248, 0.18);
+  --border-soft: rgba(71, 85, 105, 0.32);
+  --shadow-soft: 0 24px 48px rgba(15, 23, 42, 0.5);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--surface-primary);
+  --color-foreground: var(--text-primary);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-border: var(--border-soft);
+  --font-sans: var(--font-family-sans), "Inter", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: var(--font-family-mono), "Fira Code", "SFMono-Regular", ui-monospace,
+    "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --shadow-soft: var(--shadow-soft);
+  --shadow-ring: 0 0 0 1px var(--border-soft);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border-soft);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 80%, transparent);
+  color: #fff;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--surface-primary);
+  color: var(--text-primary);
+  font-family: var(--font-family-sans), "Inter", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Lenis helpers: ensure native behavior and layout */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.container {
+  width: min(1120px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+  border: 1px solid color-mix(in srgb, var(--border-soft) 75%, transparent);
+  background: color-mix(in srgb, var(--surface-primary) 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  position: relative;
+  width: max-content;
+  align-items: center;
+  gap: 3rem;
+  padding-block: 1.75rem;
+  padding-inline: 3rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  animation: marquee 24s linear infinite;
+}
+
+.marquee-item {
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--border-soft) 70%, transparent);
+  background: color-mix(in srgb, var(--surface-muted) 60%, transparent);
+}
+
+.marquee-container:hover .marquee-track,
+.marquee-container:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0.75rem;
+  transform: translate(-50%, -150%);
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.25s ease;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0);
+}
+
+
+
+.section-anchor-offset,
+:where(section[id]) {
+  /* Prevent sticky header from covering anchor targets */
+  scroll-margin-top: 5rem;
+}
+.prism-background {
+  position: absolute;
+  inset: -12%;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 20%, rgba(99,102,241,0.22), transparent 60%),
+    radial-gradient(circle at 80% 30%, rgba(236,72,153,0.18), transparent 70%),
+    radial-gradient(circle at 50% 80%, rgba(14,165,233,0.16), transparent 65%);
+  opacity: 0.55;
+}
+
+
+
+

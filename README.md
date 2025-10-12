@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Gazi Asif Imtiaz (Tiaz) — Product-minded Full Stack Developer
 
-## Getting Started
+High-polish personal portfolio inspired by [anujmagar.com.np](https://anujmagar.com.np) built with **Next.js (App Router)**, **TypeScript**, **Tailwind v4**, and **Framer Motion**. The site spotlights motion-rich hero messaging, tech stack, featured work, experience timeline, an animated logo marquee, and an accessible contact form with validation.
 
-First, run the development server:
+### ✨ Feature Highlights
+- Split-line hero with staggered motion, CTA buttons, and quick stat cards.
+- Typed content layer in `src/data` for projects, experience, technologies, and profile metadata.
+- Reusable UI primitives (`Container`, `Button`, `Badge`, `SectionHeading`) and a custom theme provider with light/dark toggle.
+- Accessible logo marquee with reduced-motion fallback and hover/focus pause.
+- Contact form with client-side validation, honeypot spam protection, success state, and aria-live announcements.
+- Metadata, Open Graph, and color theme configuration for shareable previews.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 🧱 Tech Stack
+- Next.js 15 App Router + TypeScript
+- Tailwind CSS v4 (inline theming)
+- Framer Motion for entrance and scroll-reveal animations
+- Custom CSS tokens + Next Font (`Plus Jakarta Sans`, `Fira Code`)
+
+### 📁 Key Structure
+```
+src/
+  app/
+    layout.tsx      # Global layout, theme provider, metadata
+    page.tsx        # Home page composition
+    globals.css     # Tailwind v4 theme + global utilities
+  components/
+    ui/             # Button, Container, Badge primitives
+    hero.tsx        # Animated hero section
+    featured-work.tsx, project-card.tsx, ...
+    contact-form.tsx
+  data/
+    personal.ts     # Profile + copy
+    projects.ts     # Featured work entries
+    experience.ts   # Timeline data
+    technologies.ts, logos.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🚀 Commands
+| Command            | Description                         |
+| ------------------ | ----------------------------------- |
+| `npm run dev`      | Start local dev server (Turbopack). |
+| `npm run lint`     | Run ESLint/TypeScript checks.       |
+| `npm run build`    | Production build (uses Turbopack).  |
+| `npm run start`    | Serve the production build.         |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🛠 Customising Content
+- Update personal details, socials, and bio in `src/data/personal.ts`.
+- Add/edit projects in `src/data/projects.ts` and drop new artwork into `public/media/projects`.
+- Maintain experience entries in `src/data/experience.ts`.
+- Edit technology badges via `src/data/technologies.ts` and marquee names in `src/data/logos.ts`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Animations, spacing, and semantics are tuned for accessibility. The marquee halts for `prefers-reduced-motion`, skip links aid keyboard users, and all interactive controls have focus styles.
 
-## Learn More
+### 🌐 Deployment
+Deploy to Vercel (recommended) or any platform that supports Node.js. The build outputs static HTML for `/` and can be served via any static hosting solution once built (`.next` directory).
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> Tip: update the canonical URL in `src/app/layout.tsx` once you point the portfolio to a live domain.

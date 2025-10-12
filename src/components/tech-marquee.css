@@ -1,0 +1,97 @@
+.tech-marquee {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tech-marquee__rail {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  background: color-mix(in srgb, var(--surface-elevated) 60%, transparent);
+  backdrop-filter: blur(14px);
+  padding-block: 0.9rem;
+}
+
+.tech-marquee__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  animation: tech-marquee-left linear infinite;
+  animation-duration: var(--marquee-duration, 28s);
+  will-change: transform;
+}
+
+.tech-marquee__rail[data-direction="right"] .tech-marquee__track {
+  animation-name: tech-marquee-right;
+}
+
+.tech-marquee__rail[data-paused="true"] .tech-marquee__track,
+.tech-marquee[data-reduced="true"] .tech-marquee__track {
+  animation-play-state: paused;
+}
+
+.tech-marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  background: color-mix(in srgb, var(--surface-primary) 75%, transparent);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--color-border) 24%, transparent);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--color-muted);
+  transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.tech-marquee__item:hover,
+.tech-marquee__item:focus-visible {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+  color: var(--color-foreground);
+  outline: none;
+}
+
+.tech-marquee__item:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+.tech-marquee__badge {
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  color: var(--color-accent);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+}
+
+.tech-marquee__detail {
+  border-radius: 30px;
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  background: color-mix(in srgb, var(--surface-elevated) 65%, transparent);
+  backdrop-filter: blur(14px);
+  padding: 1.75rem;
+  box-shadow: 0 22px 36px color-mix(in srgb, var(--color-border) 18%, transparent);
+}
+
+@keyframes tech-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes tech-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

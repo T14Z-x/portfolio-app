@@ -1,0 +1,16 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" rx="48" fill="url(#paint0_linear)"/>
+  <path d="M160 700C260 520 460 520 580 380C700 240 840 200 1040 340" stroke="url(#paint1_linear)" stroke-width="88" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+  <text x="120" y="220" fill="white" font-size="70" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" font-weight="600" opacity="0.94">Hulas FinServe</text>
+  <text x="120" y="300" fill="white" font-size="28" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" opacity="0.7">Credit origination & risk intelligence</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="1200" y1="40" x2="80" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="140" y1="700" x2="1060" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C084FC"/>
+      <stop offset="1" stop-color="#A855F7" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+</svg>

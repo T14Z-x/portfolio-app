@@ -1,0 +1,16 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" rx="48" fill="url(#paint0_linear)"/>
+  <path d="M260 640L480 320L700 520L880 260" stroke="url(#paint1_linear)" stroke-width="80" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/>
+  <text x="120" y="220" fill="white" font-size="70" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" font-weight="600" opacity="0.95">ADA Enforcer</text>
+  <text x="120" y="300" fill="white" font-size="28" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" opacity="0.7">Product customisation portal</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="0" y1="0" x2="1200" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#1F2937"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="260" y1="640" x2="880" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F97316"/>
+      <stop offset="1" stop-color="#FDBA74"/>
+    </linearGradient>
+  </defs>
+</svg>

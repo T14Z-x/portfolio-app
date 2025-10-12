@@ -1,0 +1,20 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" rx="48" fill="url(#paint0_linear)"/>
+  <rect x="200" y="220" width="800" height="460" rx="40" fill="url(#paint1_linear)" opacity="0.4"/>
+  <path d="M260 460H940" stroke="white" stroke-opacity="0.28" stroke-width="12" stroke-linecap="round"/>
+  <path d="M260 540H760" stroke="white" stroke-opacity="0.18" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="320" cy="360" r="42" fill="#38BDF8" opacity="0.8"/>
+  <circle cx="420" cy="360" r="42" fill="#F8FAFC" opacity="0.45"/>
+  <text x="120" y="220" fill="white" font-size="70" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" font-weight="600" opacity="0.95">Dolphwin ATS</text>
+  <text x="120" y="300" fill="white" font-size="28" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" opacity="0.7">Pipeline-first applicant tracking</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="1200" y1="0" x2="140" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#082F49"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="200" y1="220" x2="1000" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+</svg>
