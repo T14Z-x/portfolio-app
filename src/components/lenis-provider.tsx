@@ -9,7 +9,7 @@ export type LenisProviderProps = {
 };
 
 export function LenisProvider({ children }: LenisProviderProps) {
-  const frame = useRef<number>();
+  const frame = useRef<number | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -27,7 +27,6 @@ export function LenisProvider({ children }: LenisProviderProps) {
       duration: 1.1,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      smoothTouch: false,
       gestureOrientation: "vertical",
     });
 
@@ -39,7 +38,7 @@ export function LenisProvider({ children }: LenisProviderProps) {
     frame.current = requestAnimationFrame(onRaf);
 
     return () => {
-      if (frame.current) {
+      if (frame.current !== null) {
         cancelAnimationFrame(frame.current);
       }
       lenis.destroy();
