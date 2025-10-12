@@ -1,6 +1,6 @@
 ## Gazi Asif Imtiaz (Tiaz) — Product-minded Full Stack Developer
 
-High-polish personal portfolio inspired by [anujmagar.com.np](https://anujmagar.com.np) built with **Next.js (App Router)**, **TypeScript**, **Tailwind v4**, and **Framer Motion**. The site spotlights motion-rich hero messaging, tech stack, featured work, experience timeline, an animated logo marquee, and an accessible contact form with validation.
+High-polish personal portfolio built with **Next.js (App Router)**, **TypeScript**, **Tailwind v4**, and **Framer Motion**. The site spotlights motion-rich hero messaging, tech stack, featured work, experience timeline, an animated logo marquee, and an accessible contact form with validation.
 
 ### ✨ Feature Highlights
 - Split-line hero with staggered motion, CTA buttons, and quick stat cards.
