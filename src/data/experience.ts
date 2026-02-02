@@ -14,8 +14,8 @@ export const experience: Experience[] = [
     tech: ["Next.js", "TypeScript", "Framer Motion", "Node.js"],
   },
   {
-    company: "Skarbol.Tech",
-    role: "Full Stack Developer",
+    company: "Selise Group",
+    role: "Executive Software Developer",
     start: "2024",
     end: "Present",
     bullets: [
