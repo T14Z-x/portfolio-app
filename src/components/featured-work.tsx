@@ -1,10 +1,42 @@
+"use client";
+
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/section-heading";
 import { ProjectCard } from "@/components/project-card";
 import { Reveal } from "@/components/reveal";
 import { projects } from "@/data/projects";
 
+// Grid container with staggered children
+const gridContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+// Individual card wrapper animation
+const cardWrapperVariants: Variants = {
+  hidden: { opacity: 0, y: 60, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      ease: [0.21, 0.71, 0.4, 1],
+    },
+  },
+};
+
 export function FeaturedWork() {
+  const prefersReducedMotion = useReducedMotion();
+  const animationsEnabled = !prefersReducedMotion;
+
   return (
     <section
       id="work"
@@ -23,11 +55,22 @@ export function FeaturedWork() {
           />
         </Reveal>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <motion.div
+          className="grid gap-8 md:grid-cols-2"
+          variants={animationsEnabled ? gridContainerVariants : undefined}
+          initial={animationsEnabled ? "hidden" : undefined}
+          whileInView={animationsEnabled ? "visible" : undefined}
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <motion.div
+              key={project.id}
+              variants={animationsEnabled ? cardWrapperVariants : undefined}
+            >
+              <ProjectCard project={project} index={index} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
