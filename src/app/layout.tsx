@@ -61,13 +61,13 @@ export default function RootLayout({
         <ThemeProvider>
           <LenisProvider>
             <div className="flex min-h-screen flex-col">
-            <a href="#main" className="skip-link">
-              Skip to main content
-            </a>
-            <SiteHeader />
-            {children}
-          </div>
-        </LenisProvider>
+              <a href="#main" className="skip-link">
+                Skip to main content
+              </a>
+              <SiteHeader />
+              {children}
+            </div>
+          </LenisProvider>
         </ThemeProvider>
       </body>
     </html>

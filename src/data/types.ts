@@ -1,3 +1,39 @@
+export type ProjectLink =
+  | {
+      type: "public";
+      href: string;
+      label?: string;
+    }
+  | {
+      type: "private";
+      label?: string;
+      note?: string;
+    };
+
+export type ProjectCaseStudy = {
+  slug: string;
+  role: string;
+  team: string;
+  timeline: string;
+  expansionHero?: {
+    mediaType?: "video" | "image";
+    mediaSrc: string;
+    posterSrc?: string;
+    bgImageSrc: string;
+    date?: string;
+    scrollToExpand?: string;
+    textBlend?: boolean;
+  };
+  reportUrl?: string;
+  reportLabel?: string;
+  challenge: string;
+  scope: string[];
+  contributions: string[];
+  outcomes: string[];
+  stack: string[];
+  confidentialityNote?: string;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -5,8 +41,10 @@ export type Project = {
   tags: string[];
   image?: string;
   url?: string;
+  link?: ProjectLink;
   year: number;
   caseStudyRoute?: string;
+  caseStudy?: ProjectCaseStudy;
 };
 
 export type Experience = {

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -14,8 +14,14 @@ type ProjectCardProps = {
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const animationsEnabled = !prefersReducedMotion;
+  const caseStudyHref = project.caseStudy ? `/work/${project.caseStudy.slug}` : project.caseStudyRoute;
+  const isWholeCardClickable = project.id === "cattlesync" && Boolean(caseStudyHref);
+  const publicHref =
+    project.link?.type === "public"
+      ? project.link.href
+      : project.url;
 
-  return (
+  const card = (
     <motion.article
       className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[--color-border]/60 bg-[--surface-elevated]/60 shadow-[var(--shadow-soft)]"
       initial={animationsEnabled ? { opacity: 0, y: 32 } : undefined}
@@ -37,7 +43,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             fill
             className="object-cover transition duration-500 group-hover:scale-[1.06]"
             sizes="(max-width: 768px) 100vw, 33vw"
-            priority={project.id === "mewa"}
+            priority={index === 0}
           />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-[--color-accent] to-transparent" />
@@ -96,35 +102,64 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: animationsEnabled ? 0.45 : 0, delay: animationsEnabled ? index * 0.08 + 0.32 : 0 }}
         >
-          <Link
-            href={project.url ?? '#'}
-            className={clsx(
-              'inline-flex items-center text-sm font-medium text-[--color-accent] transition',
-              project.url ? 'hover:gap-2' : 'cursor-default opacity-40',
-            )}
-            target={project.url?.startsWith('http') ? '_blank' : undefined}
-            rel={project.url?.startsWith('http') ? 'noopener noreferrer' : undefined}
-          >
-            View project
-            <motion.span
-              aria-hidden
-              className="ml-1"
-              animate={animationsEnabled ? { x: [0, 4, 0] } : undefined}
-              transition={animationsEnabled ? { duration: 1.4, repeat: Infinity, ease: 'easeInOut' } : undefined}
-            >
-              →
-            </motion.span>
-          </Link>
-          {project.caseStudyRoute ? (
+          {publicHref ? (
             <Link
-              href={project.caseStudyRoute}
-              className="text-xs uppercase tracking-[0.24em] text-[--color-muted] transition hover:text-[--color-accent]"
+              href={publicHref}
+              className="inline-flex items-center text-sm font-medium text-[--color-accent] transition hover:gap-2"
+              target={publicHref.startsWith("http") ? "_blank" : undefined}
+              rel={publicHref.startsWith("http") ? "noopener noreferrer" : undefined}
             >
-              Case Study
+              {project.link?.type === "public" ? project.link.label ?? "View demo" : "View project"}
+              <motion.span
+                aria-hidden
+                className="ml-1"
+                animate={animationsEnabled ? { x: [0, 4, 0] } : undefined}
+                transition={animationsEnabled ? { duration: 1.4, repeat: Infinity, ease: "easeInOut" } : undefined}
+              >
+                →
+              </motion.span>
             </Link>
+          ) : (
+            <span
+              className={clsx(
+                "inline-flex cursor-default items-center text-sm font-medium text-[--color-muted] opacity-70",
+                project.link?.type === "private" && "text-[--color-accent]",
+              )}
+              title={project.link?.type === "private" ? project.link.note : undefined}
+            >
+              {project.link?.type === "private" ? project.link.label ?? "Private (NDA)" : "Link unavailable"}
+            </span>
+          )}
+          {caseStudyHref ? (
+            isWholeCardClickable ? (
+              <span className="text-xs uppercase tracking-[0.24em] text-[--color-accent]">
+                Case Study
+              </span>
+            ) : (
+              <Link
+                href={caseStudyHref}
+                className="text-xs uppercase tracking-[0.24em] text-[--color-muted] transition hover:text-[--color-accent]"
+              >
+                Case Study
+              </Link>
+            )
           ) : null}
         </motion.div>
       </motion.div>
     </motion.article>
   );
+
+  if (isWholeCardClickable && caseStudyHref) {
+    return (
+      <Link
+        href={caseStudyHref}
+        aria-label={`Open ${project.title} case study`}
+        className="block h-full rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-accent]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-primary]"
+      >
+        {card}
+      </Link>
+    );
+  }
+
+  return card;
 }
