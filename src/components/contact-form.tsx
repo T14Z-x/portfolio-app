@@ -9,62 +9,33 @@ import {
   useState,
 } from "react";
 
-type FormState = "idle" | "submitting" | "success" | "error";
-
-type FormValues = {
-  name: string;
-  email: string;
-  message: string;
-  meeting: string;
-  company: string; // honeypot
-};
-
-type FormErrors = Partial<Record<keyof FormValues, string>>;
-
-const initialValues: FormValues = {
-  name: "",
-  email: "",
-  message: "",
-  meeting: "",
-  company: "",
-};
+import {
+  initialContactFormValues,
+  type ContactFormErrors,
+  type ContactFormState,
+  type ContactFormValues,
+  validateContactForm,
+} from "@/lib/contact";
 
 export function ContactForm() {
-  const [values, setValues] = useState<FormValues>(initialValues);
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [state, setState] = useState<FormState>("idle");
+  const [values, setValues] = useState<ContactFormValues>(initialContactFormValues);
+  const [errors, setErrors] = useState<ContactFormErrors>({});
+  const [state, setState] = useState<ContactFormState>("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isDisabled = state === "submitting";
 
-  const validate = (nextValues: FormValues): FormErrors => {
-    const nextErrors: FormErrors = {};
-
-    if (!nextValues.name.trim()) {
-      nextErrors.name = "Please share your name.";
-    }
-    if (!nextValues.email.trim()) {
-      nextErrors.email = "Email is required.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nextValues.email.trim())) {
-      nextErrors.email = "Use a valid email.";
-    }
-    if (!nextValues.message.trim()) {
-      nextErrors.message = "Tell me a little about the project.";
-    }
-    if (!nextValues.meeting.trim()) {
-      nextErrors.meeting = "When are you available?";
-    }
-    if (nextValues.company) {
-      nextErrors.company = ""; // honeypot triggered
-    }
-
-    return nextErrors;
-  };
-
-  const handleChange = (field: keyof FormValues) =>
+  const handleChange = (field: keyof ContactFormValues) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const next = { ...values, [field]: event.target.value };
       setValues(next);
+      if (state !== "idle") {
+        setState("idle");
+      }
+      if (submitMessage) {
+        setSubmitMessage("");
+      }
       if (errors[field]) {
         const nextErrors = { ...errors };
         delete nextErrors[field];
@@ -76,29 +47,58 @@ export function ContactForm() {
     event.preventDefault();
     if (state === "submitting") return;
 
-    const validationErrors = validate(values);
+    const validationErrors = validateContactForm(values);
     const hasErrors = Object.values(validationErrors).some(Boolean);
     if (hasErrors) {
       setErrors(validationErrors);
       setState("error");
+      setSubmitMessage("Please fix the highlighted fields.");
       return;
     }
 
     setErrors({});
     setState("submitting");
+    setSubmitMessage("");
 
     try {
-      // Simulate async request. Swap with API call or third-party integration.
-      await new Promise((resolve) => setTimeout(resolve, 1200));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      const result = (await response.json().catch(() => null)) as
+        | {
+            error?: string;
+            fieldErrors?: ContactFormErrors;
+          }
+        | null;
+
+      if (!response.ok) {
+        if (result?.fieldErrors) {
+          setErrors(result.fieldErrors);
+        }
+        setState("error");
+        setSubmitMessage(result?.error ?? "Could not send your message right now.");
+        return;
+      }
+
       setState("success");
-      setValues(initialValues);
+      setSubmitMessage("Message sent successfully.");
+      setValues(initialContactFormValues);
       if (resetTimer.current) {
         clearTimeout(resetTimer.current);
       }
-      resetTimer.current = setTimeout(() => setState("idle"), 2500);
+      resetTimer.current = setTimeout(() => {
+        setState("idle");
+        setSubmitMessage("");
+      }, 2500);
     } catch (error) {
       console.error(error);
       setState("error");
+      setSubmitMessage("Could not send your message right now. Please try again or email me directly.");
     }
   };
 
@@ -112,13 +112,13 @@ export function ContactForm() {
 
   const ariaMessage = useMemo(() => {
     if (state === "success") {
-      return "Message sent successfully.";
+      return submitMessage || "Message sent successfully.";
     }
-    if (state === "error" && Object.keys(errors).length > 0) {
-      return "Please fix the highlighted fields.";
+    if (state === "error") {
+      return submitMessage || "Could not send your message right now.";
     }
     return "";
-  }, [errors, state]);
+  }, [state, submitMessage]);
 
   return (
     <form

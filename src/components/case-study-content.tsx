@@ -67,7 +67,7 @@ export function CaseStudyContent({ project }: CaseStudyContentProps) {
             <div className="flex flex-wrap items-center justify-between gap-4">
               <Link
                 href="/#work"
-                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur"
+                className="inline-flex items-center gap-2 rounded-full border border-[--color-border]/80 bg-[color-mix(in_srgb,var(--surface-elevated)_88%,transparent)] px-4 py-2 text-sm font-semibold text-[--color-foreground] shadow-[var(--shadow-soft)] backdrop-blur transition hover:border-[--color-accent]/35 hover:text-[--color-accent]"
               >
                 <span aria-hidden="true">←</span>
                 All Projects
@@ -77,18 +77,18 @@ export function CaseStudyContent({ project }: CaseStudyContentProps) {
                   href={caseStudy.reportUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black"
+                  className="rounded-full bg-[--color-accent] px-4 py-2 text-sm font-semibold text-[--color-accent-foreground] shadow-[0_20px_45px_rgba(79,70,229,0.22)] transition hover:brightness-105"
                 >
                   {caseStudy.reportLabel ?? "View Report"}
                 </Link>
               )}
             </div>
 
-            <article className="rounded-3xl border border-white/20 bg-black/35 p-6 text-white backdrop-blur-md md:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-200">Case Study</p>
-              <p className="mt-4 text-lg leading-relaxed text-blue-50 md:text-xl">{project.summary}</p>
+            <article className="rounded-3xl border border-[--color-border]/80 bg-[color-mix(in_srgb,var(--surface-elevated)_84%,transparent)] p-6 text-[--color-foreground] shadow-[var(--shadow-soft)] backdrop-blur-md md:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[--color-accent]">Case Study</p>
+              <p className="mt-4 text-lg leading-relaxed text-[--color-foreground] md:text-xl">{project.summary}</p>
               {caseStudy.confidentialityNote && (
-                <p className="mt-5 inline-flex rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-xs font-medium text-blue-100">
+                <p className="mt-5 inline-flex rounded-full border border-[--color-border]/70 bg-[color-mix(in_srgb,var(--surface-muted)_72%,transparent)] px-3 py-1.5 text-xs font-medium text-[--color-muted]">
                   NDA protected content
                 </p>
               )}
@@ -96,7 +96,7 @@ export function CaseStudyContent({ project }: CaseStudyContentProps) {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold text-blue-100"
+                    className="rounded-full border border-[--color-border]/70 bg-[color-mix(in_srgb,var(--surface-muted)_72%,transparent)] px-3 py-1.5 text-xs font-semibold text-[--color-foreground]"
                   >
                     {tag}
                   </span>
@@ -145,7 +145,7 @@ export function CaseStudyContent({ project }: CaseStudyContentProps) {
                 href={caseStudy.reportUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-[--color-accent] px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[--color-accent]/20 transition-all hover:shadow-xl hover:shadow-[--color-accent]/25"
+                className="group inline-flex items-center gap-2 rounded-full bg-[--color-accent] px-5 py-2.5 text-sm font-semibold text-[--color-accent-foreground] shadow-lg shadow-[--color-accent]/20 transition-all hover:shadow-xl hover:shadow-[--color-accent]/25"
               >
                 <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -655,7 +655,7 @@ export function CaseStudyContent({ project }: CaseStudyContentProps) {
               <div className="mt-10 flex flex-wrap justify-center gap-4">
                 <Link
                   href="/#contact"
-                  className="group inline-flex items-center gap-2.5 rounded-full bg-[--color-accent] px-8 py-4 text-base font-semibold text-white shadow-xl shadow-[--color-accent]/20 transition-all hover:shadow-2xl hover:shadow-[--color-accent]/25"
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-[--color-accent] px-8 py-4 text-base font-semibold text-[--color-accent-foreground] shadow-xl shadow-[--color-accent]/20 transition-all hover:shadow-2xl hover:shadow-[--color-accent]/25"
                 >
                   Get in Touch
                   <svg className="size-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

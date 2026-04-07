@@ -1,66 +1,5 @@
-# Node
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# Next.js / build outputs
-.next/
-.next/cache/
-.vercel/
-.vercel_build_output/
-out/
-dist/
-build/
-
-# Storybook / expo / other build caches
-.expo/
-.turbo/
-
-# Static/media outputs (adjust to your project structure)
-public/uploads/
-public/assets/
-assets/
-static/
-
-# Environment
-.env
-.env.local
-.env.*
-!.env.example
-
-# Logs / coverage
-logs/
-*.log
-coverage/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Editor directories
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
-
-# Keys / certs
-*.pem
-*.key
-*.crt
-
-# Misc
-*.tmp
-*.swp
-*.lock
-
-# Ignore MacOS Finder tags
-._*
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -69,47 +8,61 @@ Thumbs.db
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
-
-# next.js
+# Next.js / production outputs
 /.next/
+/.next/cache/
 /out/
-
-# production
 /build
+dist/
+.vercel/
+.vercel_build_output/
 
-# misc
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-!.env.example
-
-# vercel
-.vercel
-
-# typescript
+# caches and tooling
+.expo/
+.turbo/
+.eslintcache
+.swc
+.cache
 *.tsbuildinfo
 next-env.d.ts
 
-# editors/IDE
+# logs and test output
+logs/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# environment
+.env
+.env.local
+.env.*
+!.env.example
+
+# project-generated assets
+public/uploads/
+public/assets/
+assets/
+static/
+
+# editor and OS files
 .vscode/
 .idea/
 .fleet/
-
-# caches and tooling
-.eslintcache
-.turbo
-.swc
-.cache
-
-# macOS
+*.sublime-project
+*.sublime-workspace
 .DS_Store
 Thumbs.db
+._*
+
+# temp files
+*.tmp
+*.swp
+
+# keys and certs
+*.pem
+*.key
+*.crt

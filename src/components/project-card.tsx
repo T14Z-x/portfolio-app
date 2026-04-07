@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { clsx } from "clsx";
 import { motion, useReducedMotion } from "framer-motion";
+import type { KeyboardEvent, MouseEvent } from "react";
 import type { Project } from "@/data/types";
 
 type ProjectCardProps = {
@@ -12,18 +14,59 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+  const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
   const animationsEnabled = !prefersReducedMotion;
   const caseStudyHref = project.caseStudy ? `/work/${project.caseStudy.slug}` : project.caseStudyRoute;
-  const isWholeCardClickable = project.id === "cattlesync" && Boolean(caseStudyHref);
+  const isWholeCardClickable = Boolean(caseStudyHref);
   const publicHref =
     project.link?.type === "public"
       ? project.link.href
       : project.url;
 
+  const openCaseStudy = () => {
+    if (!caseStudyHref) {
+      return;
+    }
+
+    router.push(caseStudyHref);
+  };
+
+  const isInteractiveTarget = (target: EventTarget | null) =>
+    target instanceof HTMLElement &&
+    Boolean(target.closest("a, button, input, textarea, select, summary"));
+
+  const handleCardClick = (event: MouseEvent<HTMLElement>) => {
+    if (!isWholeCardClickable || isInteractiveTarget(event.target)) {
+      return;
+    }
+
+    openCaseStudy();
+  };
+
+  const handleCardKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (!isWholeCardClickable || isInteractiveTarget(event.target)) {
+      return;
+    }
+
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openCaseStudy();
+    }
+  };
+
   const card = (
     <motion.article
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[--color-border]/60 bg-[--surface-elevated]/60 shadow-[var(--shadow-soft)]"
+      className={clsx(
+        "group flex h-full flex-col overflow-hidden rounded-3xl border border-[--color-border]/60 bg-[--surface-elevated]/60 shadow-[var(--shadow-soft)]",
+        isWholeCardClickable &&
+          "cursor-pointer transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-accent]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-primary]",
+      )}
+      role={isWholeCardClickable ? "link" : undefined}
+      tabIndex={isWholeCardClickable ? 0 : undefined}
+      aria-label={isWholeCardClickable ? `Open ${project.title} case study` : undefined}
+      onClick={handleCardClick}
+      onKeyDown={handleCardKeyDown}
       initial={animationsEnabled ? { opacity: 0, y: 32 } : undefined}
       whileInView={animationsEnabled ? { opacity: 1, y: 0 } : undefined}
       viewport={{ once: true, amount: 0.2 }}
@@ -148,18 +191,6 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       </motion.div>
     </motion.article>
   );
-
-  if (isWholeCardClickable && caseStudyHref) {
-    return (
-      <Link
-        href={caseStudyHref}
-        aria-label={`Open ${project.title} case study`}
-        className="block h-full rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-accent]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-primary]"
-      >
-        {card}
-      </Link>
-    );
-  }
 
   return card;
 }

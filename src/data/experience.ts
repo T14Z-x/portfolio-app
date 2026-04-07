@@ -14,10 +14,22 @@ export const experience: Experience[] = [
     tech: ["Next.js", "TypeScript", "Framer Motion", "Node.js"],
   },
   {
+    company: "Aurwave",
+    role: "Frontend Developer & Web Designer",
+    start: "2026",
+    end: "Present",
+    bullets: [
+      "Design and build polished web experiences that balance brand expression, usability, and performance.",
+      "Translate product and marketing requirements into responsive frontend interfaces with clear visual hierarchy.",
+      "Collaborate on web design direction, interaction details, and launch-ready UI systems for fast-moving releases.",
+    ],
+    tech: ["React", "Next.js", "Tailwind CSS", "Figma"],
+  },
+  {
     company: "Skarbol Tech",
     role: "Executive Software Developer",
     start: "2024",
-    end: "Present",
+    end: "2026",
     bullets: [
       "Rebuilt a multi-tenant analytics platform with real-time dashboards, globalisation, and motion-rich onboarding flows.",
       "Implemented a shared component library and animation guidelines to keep marketing and product surfaces consistent.",

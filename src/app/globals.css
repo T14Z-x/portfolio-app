@@ -7,6 +7,7 @@
   --text-primary: #0b1220;
   --text-muted: #4a556b;
   --accent: #6366f1;
+  --accent-foreground: #0b1220;
   --accent-soft: rgba(99, 102, 241, 0.12);
   --border-soft: rgba(79, 70, 229, 0.12);
   --shadow-soft: 0 24px 60px rgba(79, 70, 229, 0.12);
@@ -19,6 +20,7 @@
   --text-primary: #f8fafc;
   --text-muted: #96a3c1;
   --accent: #818cf8;
+  --accent-foreground: #ffffff;
   --accent-soft: rgba(129, 140, 248, 0.18);
   --border-soft: rgba(71, 85, 105, 0.32);
   --shadow-soft: 0 24px 48px rgba(15, 23, 42, 0.5);
@@ -29,6 +31,7 @@
   --color-foreground: var(--text-primary);
   --color-muted: var(--text-muted);
   --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --color-accent-soft: var(--accent-soft);
   --color-border: var(--border-soft);
   --font-sans: var(--font-family-sans), "Inter", system-ui, -apple-system,

@@ -43,6 +43,16 @@ src/
 | `npm run build`    | Production build (uses Turbopack).  |
 | `npm run start`    | Serve the production build.         |
 
+### ✉️ Contact Form Setup
+The contact form posts to `POST /api/contact` and sends mail through Resend.
+
+1. Copy `.env.example` to `.env.local`.
+2. Set `RESEND_API_KEY`.
+3. Set `CONTACT_TO_EMAIL` to the inbox that should receive portfolio inquiries.
+4. Set `CONTACT_FROM_EMAIL` to a sender address verified in Resend.
+
+When the environment variables are missing, the form stays visible but the API returns a configuration error instead of pretending it sent the message.
+
 ### 🛠 Customising Content
 - Update personal details, socials, and bio in `src/data/personal.ts`.
 - Add/edit projects in `src/data/projects.ts` and drop new artwork into `public/media/projects`.
