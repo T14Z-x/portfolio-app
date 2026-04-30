@@ -109,29 +109,22 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[0.68rem] uppercase tracking-[0.24em] text-white/58 sm:hidden"
+          className="w-full sm:hidden"
           variants={containerVariants}
           initial={parentInitial}
           whileInView={animationsEnabled ? "visible" : undefined}
           viewport={{ once: true, margin: "-10% 0px" }}
         >
-          {heroStats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              variants={itemVariants}
-              className="flex items-center gap-4"
-            >
-              <div className="text-center">
-                <p>{stat.label}</p>
-                <p className="mt-1 text-[0.8rem] font-semibold normal-case tracking-normal text-white/84">
-                  {stat.value}
-                </p>
-              </div>
-              {index < heroStats.length - 1 ? (
-                <span aria-hidden className="size-1 rounded-full bg-white/26" />
-              ) : null}
-            </motion.div>
-          ))}
+          <motion.div
+            variants={itemVariants}
+            className="mx-auto flex max-w-xs flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-[0.68rem] font-medium uppercase tracking-[0.22em] text-white/62"
+          >
+            <span>{profile.yearsOfExperience}+ years shipping</span>
+            <span aria-hidden className="size-1 rounded-full bg-white/28" />
+            <span className="normal-case tracking-normal text-white/78">
+              Next.js / TypeScript / Motion
+            </span>
+          </motion.div>
         </motion.div>
 
         <motion.div
