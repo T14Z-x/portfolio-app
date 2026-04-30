@@ -1,56 +1,31 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import LiquidEther from "@/components/liquid-ether";
+import { useReducedMotion } from "framer-motion";
+
+const heroVideoUrl = "/hero.mp4";
 
 export function HeroBackground() {
   const prefersReducedMotion = useReducedMotion();
-  const shouldAnimate = !prefersReducedMotion;
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <LiquidEther
-        className="size-full"
-        style={{ position: "absolute", inset: 0 }}
-        colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
-        mouseForce={20}
-        cursorSize={140}
-        isViscous={false}
-        iterationsViscous={32}
-        iterationsPoisson={32}
-        resolution={0.45}
-        isBounce={false}
-        autoDemo
-        autoSpeed={0.45}
-        autoIntensity={2.4}
-        takeoverDuration={0.25}
-        autoResumeDelay={2800}
-        autoRampDuration={0.6}
-      />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(15,23,42,0.04),_transparent_55%)]" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.35]">
-        <div className="size-full bg-[linear-gradient(120deg,_rgba(29,78,216,0.08)_0%,_rgba(236,72,153,0.06)_38%,_rgba(20,184,166,0.08)_72%,_rgba(64, 93, 230,0.05)_100%)]" />
+      <video
+        className="size-full object-cover"
+        autoPlay={!prefersReducedMotion}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src={heroVideoUrl} type="video/mp4" />
+      </video>
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.32)_0%,rgba(2,6,23,0.52)_30%,rgba(2,6,23,0.7)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.18),transparent_34%),radial-gradient(circle_at_80%_78%,rgba(99,102,241,0.16),transparent_30%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-20">
+        <div className="size-full bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:140px_140px]" />
       </div>
-
-      <div className="pointer-events-none absolute inset-x-[-40%] bottom-[-240px] h-[460px] bg-[radial-gradient(circle,_rgba(15,23,42,0.18)_0%,_transparent_65%)] blur-3xl" />
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 scale-110 opacity-40 [mask-image:radial-gradient(circle_at_top,_rgba(0,0,0,0.9),_transparent_70%)]"
-        initial={shouldAnimate ? { opacity: 0 } : undefined}
-        animate={shouldAnimate ? { opacity: [0.15, 0.35, 0.25, 0.4, 0.2] } : undefined}
-        transition={
-          shouldAnimate
-            ? { duration: 12, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }
-            : undefined
-        }
-        style={{
-          backgroundImage:
-            "linear-gradient(115deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 20%, transparent 50%)",
-        }}
-      />
-      <div className="pointer-events-none absolute inset-0 opacity-30 [mask-image:radial-gradient(circle_at_top,_rgba(0,0,0,0.8),_transparent_70%)]">
-        <div className="size-full bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:120px_120px]" />
-      </div>
+      <div className="pointer-events-none absolute inset-x-[-12%] bottom-[-180px] h-[360px] bg-[radial-gradient(circle,rgba(15,23,42,0.84)_0%,transparent_68%)] blur-3xl" />
     </div>
   );
 }

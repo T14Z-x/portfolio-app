@@ -174,3 +174,59 @@ html.lenis body {
     radial-gradient(circle at 50% 80%, rgba(14, 165, 233, 0.16), transparent 65%);
   opacity: 0.55;
 }
+
+.terminal-loader-panel {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(84, 108, 255, 0.18), transparent 38%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 34%),
+    linear-gradient(135deg, #02050d 0%, #050a17 48%, #02050d 100%);
+}
+
+.terminal-loader-grid {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 140px 140px;
+}
+
+.terminal-loader-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.terminal-loader-chip::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(246, 243, 234, 0.75);
+  box-shadow: 0 0 16px rgba(246, 243, 234, 0.6);
+}
+
+.terminal-loader-mark {
+  font-weight: 600;
+  letter-spacing: -0.08em;
+  color: rgba(246, 243, 234, 0.96);
+  text-shadow: 0 0 30px rgba(246, 243, 234, 0.14);
+}
+
+.terminal-loader-cursor::after {
+  content: "";
+  width: 0.5rem;
+  height: 1em;
+  background: rgba(246, 243, 234, 0.86);
+  animation: terminal-cursor-blink 0.95s steps(2, jump-none) infinite;
+}
+
+@keyframes terminal-cursor-blink {
+  0%,
+  48% {
+    opacity: 1;
+  }
+
+  49%,
+  100% {
+    opacity: 0;
+  }
+}

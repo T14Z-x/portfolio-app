@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Fira_Code } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { LenisProvider } from "@/components/lenis-provider";
+import { SiteLoader } from "@/components/site-loader";
 import "./globals.css";
 
 const sans = Plus_Jakarta_Sans({
@@ -58,6 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${sans.variable} ${mono.variable} antialiased`}>
+        <SiteLoader />
         <ThemeProvider>
           <LenisProvider>
             <div className="flex min-h-screen flex-col">

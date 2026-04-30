@@ -46,13 +46,13 @@ export function Hero() {
   return (
     <motion.section
       id="hero"
-      className="relative overflow-hidden border-b border-[--color-border] bg-gradient-to-b from-[--surface-primary] via-[--surface-primary] to-transparent"
+      className="relative overflow-hidden border-b border-white/10 bg-[#050814]"
       initial={animationsEnabled ? { opacity: 0, y: 24 } : undefined}
       animate={animationsEnabled ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: animationsEnabled ? 0.7 : 0, ease: [0.21, 0.71, 0.4, 1] }}
     >
       <HeroBackground />
-      <Container className="relative z-10 flex flex-col items-center gap-16 pb-28 pt-20 text-center sm:gap-20 sm:pt-28">
+      <Container className="relative z-10 flex flex-col items-center gap-16 pb-28 pt-20 text-center text-white sm:gap-20 sm:pt-28">
         <motion.div
           className="flex flex-col items-center gap-6"
           variants={containerVariants}
@@ -61,7 +61,7 @@ export function Hero() {
         >
           <motion.span
             variants={itemVariants}
-            className="text-xs font-semibold uppercase tracking-[0.32em] text-[--color-muted]"
+            className="text-xs font-semibold uppercase tracking-[0.32em] text-white/70"
           >
             {profile.title}
           </motion.span>
@@ -74,7 +74,7 @@ export function Hero() {
           </motion.h1>
           <motion.p
             variants={itemVariants}
-            className="max-w-2xl text-base text-[--color-muted] md:text-lg"
+            className="max-w-2xl text-base text-white/78 md:text-lg"
           >
             {profile.heroTagline}
           </motion.p>
@@ -98,7 +98,11 @@ export function Hero() {
             whileHover={animationsEnabled ? { y: -3 } : undefined}
             whileTap={animationsEnabled ? { scale: 0.98 } : undefined}
           >
-            <ButtonLink href={`mailto:${profile.email}`} variant="secondary">
+            <ButtonLink
+              href={`mailto:${profile.email}`}
+              variant="secondary"
+              className="border-white/20 bg-white/8 text-white backdrop-blur-md hover:border-white/40 hover:text-white"
+            >
               Start a project
             </ButtonLink>
           </motion.div>
@@ -117,13 +121,13 @@ export function Hero() {
               variants={itemVariants}
               whileHover={animationsEnabled ? { y: -6, scale: 1.01 } : undefined}
               transition={{ type: "spring", stiffness: 200, damping: 18 }}
-              className="rounded-3xl border border-[--color-border]/60 bg-[--surface-elevated]/80 p-6 shadow-sm shadow-[--color-border]/40 backdrop-blur"
+              className="rounded-3xl border border-white/12 bg-black/28 p-6 shadow-[0_18px_60px_rgba(2,6,23,0.28)] backdrop-blur-md"
             >
               <div className="flex h-full flex-col items-center text-center">
-                <p className="text-xs uppercase tracking-[0.28em] text-[--color-foreground]/60">
+                <p className="text-xs uppercase tracking-[0.28em] text-white/58">
                   {stat.label}
                 </p>
-                <p className="mt-3 text-3xl font-semibold tracking-tight text-[--color-foreground]">
+                <p className="mt-3 text-3xl font-semibold tracking-tight text-white">
                   {stat.value}
                 </p>
               </div>
