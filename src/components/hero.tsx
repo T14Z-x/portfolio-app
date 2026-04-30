@@ -109,7 +109,33 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="grid w-full gap-4 sm:grid-cols-3"
+          className="flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[0.68rem] uppercase tracking-[0.24em] text-white/58 sm:hidden"
+          variants={containerVariants}
+          initial={parentInitial}
+          whileInView={animationsEnabled ? "visible" : undefined}
+          viewport={{ once: true, margin: "-10% 0px" }}
+        >
+          {heroStats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              variants={itemVariants}
+              className="flex items-center gap-4"
+            >
+              <div className="text-center">
+                <p>{stat.label}</p>
+                <p className="mt-1 text-[0.8rem] font-semibold normal-case tracking-normal text-white/84">
+                  {stat.value}
+                </p>
+              </div>
+              {index < heroStats.length - 1 ? (
+                <span aria-hidden className="size-1 rounded-full bg-white/26" />
+              ) : null}
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          className="hidden w-full gap-4 sm:grid sm:grid-cols-3"
           variants={containerVariants}
           initial={parentInitial}
           whileInView={animationsEnabled ? "visible" : undefined}
