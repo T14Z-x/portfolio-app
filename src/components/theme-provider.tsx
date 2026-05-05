@@ -19,12 +19,13 @@ type ThemeContextValue = {
 };
 
 const STORAGE_KEY = "portfolio-theme-preference";
+const DEFAULT_THEME: Theme = "dark";
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 const getPreferredTheme = (): Theme => {
   if (typeof window === "undefined") {
-    return "light";
+    return DEFAULT_THEME;
   }
 
   const stored = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
@@ -32,11 +33,7 @@ const getPreferredTheme = (): Theme => {
     return stored;
   }
 
-  const prefersDark = window.matchMedia(
-    "(prefers-color-scheme: dark)",
-  ).matches;
-
-  return prefersDark ? "dark" : "light";
+  return DEFAULT_THEME;
 };
 
 const applyTheme = (theme: Theme) => {
@@ -49,28 +46,12 @@ const applyTheme = (theme: Theme) => {
 };
 
 export function ThemeProvider({ children }: PropsWithChildren) {
-  const [theme, setThemeState] = useState<Theme>("light");
+  const [theme, setThemeState] = useState<Theme>(DEFAULT_THEME);
 
   useEffect(() => {
     const initial = getPreferredTheme();
     setThemeState(initial);
     applyTheme(initial);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handler = (event: MediaQueryListEvent) => {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored) return;
-      const nextTheme = event.matches ? "dark" : "light";
-      setThemeState(nextTheme);
-      applyTheme(nextTheme);
-    };
-
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
   }, []);
 
   const setTheme = useCallback(

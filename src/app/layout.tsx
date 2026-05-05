@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { LenisProvider } from "@/components/lenis-provider";
@@ -32,10 +33,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f6f6f6" },
-    { media: "(prefers-color-scheme: dark)", color: "#05060a" },
-  ],
+  themeColor: "#05060a",
 };
 
 export default function RootLayout({
@@ -44,7 +42,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <Script
+        id="theme-init"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function () {
+              try {
+                var storedTheme = window.localStorage.getItem("portfolio-theme-preference");
+                document.documentElement.dataset.theme =
+                  storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark";
+              } catch (error) {
+                document.documentElement.dataset.theme = "dark";
+              }
+            })();
+          `,
+        }}
+      />
       <body className="antialiased">
         <SiteLoader />
         <ThemeProvider>

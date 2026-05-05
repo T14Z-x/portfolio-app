@@ -94,11 +94,11 @@ function AboutCopyCard({
   text: string;
 }) {
   return (
-    <div className="rounded-[28px] border border-white/12 bg-white/6 p-6 backdrop-blur sm:p-7">
-      <p className="mb-3 text-xs uppercase tracking-[0.28em] text-white/58">
+    <div className="rounded-[28px] border border-[--color-border]/70 bg-[color-mix(in_srgb,var(--surface-elevated)_78%,transparent)] p-6 shadow-[var(--shadow-soft)] backdrop-blur sm:p-7">
+      <p className="mb-3 text-xs uppercase tracking-[0.28em] text-[--color-muted]">
         {title}
       </p>
-      <p className="text-base leading-relaxed text-white/78 md:text-lg">
+      <p className="text-base leading-relaxed text-[--color-foreground]/86 md:text-lg">
         {text}
       </p>
     </div>
@@ -115,13 +115,13 @@ function CodeToDesignPanel({
   return (
     <div
       data-signal-item
-      className="relative h-[154px] overflow-hidden rounded-[22px] border border-white/12 bg-black/24 p-4"
+      className="relative h-[154px] overflow-hidden rounded-[22px] border border-[--color-border]/70 bg-[color-mix(in_srgb,var(--surface-primary)_72%,transparent)] p-4"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
+            "linear-gradient(color-mix(in srgb, var(--text-primary) 7%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--text-primary) 7%, transparent) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />
@@ -140,7 +140,7 @@ function CodeToDesignPanel({
       />
 
       <div className="relative z-10 grid h-full grid-cols-[1fr_auto_1fr] gap-4">
-        <div className="flex min-w-0 flex-col justify-center gap-2 font-mono text-[0.72rem] leading-none text-white/58">
+        <div className="flex min-w-0 flex-col justify-center gap-2 font-mono text-[0.72rem] leading-none text-[--color-muted]">
           {signal.codeLines.map((line, index) => (
             <motion.p
               key={`${signal.id}-${line}`}
@@ -171,15 +171,15 @@ function CodeToDesignPanel({
         />
 
         <div className="flex min-w-0 flex-col justify-center gap-3">
-          <div className="h-4 w-20 rounded-full bg-white/16" />
+          <div className="h-4 w-20 rounded-full bg-[--surface-muted]" />
           <div className="grid grid-cols-[0.75fr_1fr] gap-2">
             <div
               className="h-12 rounded-xl"
               style={{ backgroundColor: `rgba(${signal.accent}, 0.28)` }}
             />
             <div className="space-y-2">
-              <div className="h-3 rounded-full bg-white/18" />
-              <div className="h-3 w-2/3 rounded-full bg-white/12" />
+              <div className="h-3 rounded-full bg-[--surface-muted]" />
+              <div className="h-3 w-2/3 rounded-full bg-[color-mix(in_srgb,var(--surface-muted)_70%,transparent)]" />
               <div
                 className="h-3 w-1/2 rounded-full"
                 style={{ backgroundColor: `rgba(${signal.accent}, 0.36)` }}
@@ -187,7 +187,7 @@ function CodeToDesignPanel({
             </div>
           </div>
           <div className="flex items-center justify-between gap-2">
-            <p className="truncate text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-white/42">
+            <p className="truncate text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-[--color-muted]">
               {signal.interfaceLabel}
             </p>
             <div
@@ -361,7 +361,7 @@ export function AboutSection() {
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="prism-background" />
-        <div className="absolute inset-0 mix-blend-overlay opacity-18 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:120px_120px]" />
+        <div className="absolute inset-0 opacity-20 bg-[linear-gradient(color-mix(in_srgb,var(--text-primary)_6%,transparent)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_srgb,var(--text-primary)_6%,transparent)_1px,transparent_1px)] bg-[size:120px_120px]" />
       </div>
 
       <Container className="relative z-10 space-y-16">
@@ -398,13 +398,13 @@ export function AboutSection() {
           >
             <div
               ref={panelRef}
-              className="relative flex w-full overflow-hidden rounded-[28px] border border-white/12 bg-[#050814] p-6 shadow-[0_32px_120px_rgba(2,6,23,0.32)] sm:p-7"
+              className="relative flex w-full overflow-hidden rounded-[28px] border border-[--color-border]/70 bg-[color-mix(in_srgb,var(--surface-elevated)_84%,transparent)] p-6 shadow-[var(--shadow-soft)] backdrop-blur sm:p-7"
             >
               <div
                 className="pointer-events-none absolute inset-0 opacity-45"
                 style={{
                   backgroundImage:
-                    "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+                    "linear-gradient(color-mix(in srgb, var(--text-primary) 7%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--text-primary) 7%, transparent) 1px, transparent 1px)",
                   backgroundSize: "70px 70px",
                 }}
               />
@@ -414,15 +414,15 @@ export function AboutSection() {
                 style={{
                   background: `
                     radial-gradient(circle at 20% 18%, rgba(${activeSignal.accent}, 0.3), transparent 28%),
-                    radial-gradient(circle at 84% 20%, rgba(255,255,255,0.12), transparent 24%),
+                    radial-gradient(circle at 84% 20%, color-mix(in srgb, var(--surface-elevated) 42%, transparent), transparent 24%),
                     radial-gradient(circle at 52% 100%, rgba(${activeSignal.accent}, 0.22), transparent 38%)
                   `,
                 }}
               />
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,_transparent,_rgba(255,255,255,0.7),_transparent)]" />
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,_transparent,_color-mix(in_srgb,var(--color-foreground)_34%,transparent),_transparent)]" />
 
               <div className="relative z-10 flex w-full flex-col gap-8">
-                <div className="flex items-center justify-between gap-4 text-[0.68rem] font-semibold uppercase tracking-[0.3em] text-white/54">
+                <div className="flex items-center justify-between gap-4 text-[0.68rem] font-semibold uppercase tracking-[0.3em] text-[--color-muted]">
                   <span>Focus</span>
                   <span>{`0${activeSignalIndex + 1} / 0${aboutSignals.length}`}</span>
                 </div>
@@ -446,7 +446,7 @@ export function AboutSection() {
                     </div>
 
                     <div data-signal-item className="space-y-4">
-                      <h3 className="text-4xl font-semibold leading-none tracking-[-0.06em] text-white sm:text-5xl">
+                      <h3 className="text-4xl font-semibold leading-none tracking-[-0.06em] text-[--color-foreground] sm:text-5xl">
                         {activeSignal.label}
                       </h3>
                       <div
@@ -466,13 +466,13 @@ export function AboutSection() {
                   <div className="space-y-4">
                     <p
                       data-signal-item
-                      className="max-w-xl text-lg leading-relaxed text-white/92 sm:text-xl"
+                      className="max-w-xl text-lg leading-relaxed text-[--color-foreground]/90 sm:text-xl"
                     >
                       {activeSignal.headline}
                     </p>
                     <p
                       data-signal-item
-                      className="max-w-xl text-sm leading-relaxed text-white/66 sm:text-base"
+                      className="max-w-xl text-sm leading-relaxed text-[--color-muted] sm:text-base"
                     >
                       {activeSignal.body}
                     </p>
@@ -482,7 +482,7 @@ export function AboutSection() {
                     {activeSignal.chips.map((chip) => (
                       <span
                         key={`${activeSignal.id}-${chip}`}
-                        className="rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/72"
+                        className="rounded-full border border-[--color-border]/70 bg-[color-mix(in_srgb,var(--surface-primary)_72%,transparent)] px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[--color-muted]"
                       >
                         {chip}
                       </span>
@@ -499,25 +499,25 @@ export function AboutSection() {
           initial={animationsEnabled ? "hidden" : undefined}
           whileInView={animationsEnabled ? "visible" : undefined}
           viewport={{ once: true, amount: 0.5 }}
-          className="relative overflow-visible rounded-[28px] border border-white/12 bg-[#050814] p-6 shadow-[0_24px_80px_rgba(2,6,23,0.24)] sm:p-8"
+          className="relative overflow-visible rounded-[28px] border border-[--color-border]/70 bg-[color-mix(in_srgb,var(--surface-elevated)_84%,transparent)] p-6 shadow-[var(--shadow-soft)] backdrop-blur sm:p-8"
         >
           <div
             className="pointer-events-none absolute inset-0 opacity-35"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
+                "linear-gradient(color-mix(in srgb, var(--text-primary) 7%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--text-primary) 7%, transparent) 1px, transparent 1px)",
               backgroundSize: "48px 48px",
             }}
           />
           <div className="relative z-10 grid gap-8 md:grid-cols-[1fr_minmax(260px,0.7fr)] md:items-center">
             <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-white/48">
+              <p className="text-xs uppercase tracking-[0.28em] text-[--color-muted]">
                 Connect
               </p>
-              <h3 className="mt-3 max-w-xl text-2xl font-semibold tracking-tight text-white md:text-3xl">
+              <h3 className="mt-3 max-w-xl text-2xl font-semibold tracking-tight text-[--color-foreground] md:text-3xl">
                 Open the folder to reach me.
               </h3>
-              <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/68 md:text-base">
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-[--color-muted] md:text-base">
                 GitHub, LinkedIn, and Discord sit inside the file. Click the folder, then open the paper you need.
               </p>
             </div>
@@ -531,7 +531,7 @@ export function AboutSection() {
                 ))}
                 className="origin-center"
               />
-              <p className="text-center text-[0.66rem] font-semibold uppercase tracking-[0.24em] text-white/42">
+              <p className="text-center text-[0.66rem] font-semibold uppercase tracking-[0.24em] text-[--color-muted]">
                 Click folder, then click a paper
               </p>
             </div>
