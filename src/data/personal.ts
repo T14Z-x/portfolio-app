@@ -7,12 +7,12 @@ export const profile: PersonalProfile = {
   location: "Dhaka, Bangladesh",
   email: "asifimtiaz752@gmail.com",
   title: "Product-minded Full Stack Developer",
-  heroTagline: "Tiaz here — I craft bold interfaces and scalable platforms for fast-moving teams.",
-  aboutHeadline: "Combining motion, systems thinking, and code to ship statement-making products.",
+  heroTagline: "Tiaz here — I build modern products across software, frontend, design, and AI-flavored experimentation.",
+  aboutHeadline: "Not locked to one label. I work where software, interface craft, and product thinking overlap.",
   about: [
-    "Partnering with startups and agencies to translate ambitious briefs into expressive digital experiences that feel effortless to use.",
-    "With Next.js, TypeScript, and Framer Motion as my core toolkit, I build design systems, storytelling moments, and data-rich dashboards that stay performant at scale.",
-    "When I’m not iterating on product flows, you’ll find me refining prototypes, stress-testing interactions, and collaborating tightly with designers and stakeholders.",
+    "I’m a software developer, frontend engineer, and web designer who likes building products that feel sharp visually and hold up technically.",
+    "After earning my CS degree from BRAC University, I grew through product work at Skarbol Tech and now Aurwave, shipping polished interfaces, scalable systems, and modern web experiences.",
+    "I’m especially interested in remote and startup work across full stack builds, motion-led UI, and AI experiments with RAGs and LLMs. Long term, I’m working toward becoming a founder with stronger market instinct and product judgment.",
   ],
   yearsOfExperience: 3,
   socials: [

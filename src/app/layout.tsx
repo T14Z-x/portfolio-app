@@ -1,22 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Fira_Code } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { LenisProvider } from "@/components/lenis-provider";
 import { SiteLoader } from "@/components/site-loader";
 import "./globals.css";
-
-const sans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-family-sans",
-  display: "swap",
-});
-
-const mono = Fira_Code({
-  subsets: ["latin"],
-  variable: "--font-family-mono",
-  display: "swap",
-});
 
 const title = "Tiaz Portfolio";
 const description =
@@ -58,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${sans.variable} ${mono.variable} antialiased`}>
+      <body className="antialiased">
         <SiteLoader />
         <ThemeProvider>
           <LenisProvider>

@@ -7,7 +7,7 @@ const LOADER_DURATION_MS = 2200;
 const LOADER_MAX_PROGRESS_BEFORE_READY = 96;
 const LOADER_FINISH_DURATION_MS = 280;
 const EXIT_DURATION_MS = 900;
-const MAX_ASSET_WAIT_MS = 7000;
+const MAX_READY_WAIT_MS = 2400;
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(Math.max(value, min), max);
@@ -33,43 +33,11 @@ const waitForFonts = () => {
   return document.fonts.ready.then(() => undefined).catch(() => undefined);
 };
 
-const waitForCriticalVideos = () => {
-  if (typeof document === "undefined") {
-    return Promise.resolve();
-  }
-
-  const videos = Array.from(document.querySelectorAll("video"));
-  if (videos.length === 0) {
-    return Promise.resolve();
-  }
-
-  return Promise.all(
-    videos.map(
-      (video) =>
-        new Promise<void>((resolve) => {
-          if (video.readyState >= 2) {
-            resolve();
-            return;
-          }
-
-          const finish = () => {
-            video.removeEventListener("loadeddata", finish);
-            video.removeEventListener("error", finish);
-            resolve();
-          };
-
-          video.addEventListener("loadeddata", finish, { once: true });
-          video.addEventListener("error", finish, { once: true });
-        }),
-    ),
-  ).then(() => undefined);
-};
-
 const waitForInitialSiteReady = async () => {
   await Promise.race([
-    Promise.all([waitForWindowLoad(), waitForFonts(), waitForCriticalVideos()]),
+    Promise.all([waitForWindowLoad(), waitForFonts()]),
     new Promise<void>((resolve) => {
-      window.setTimeout(resolve, MAX_ASSET_WAIT_MS);
+      window.setTimeout(resolve, MAX_READY_WAIT_MS);
     }),
   ]);
 };
